@@ -5,6 +5,7 @@ Created on Mon Sep 28 14:52:40 2020
 @author: Likhit
 """
 import numpy as np
+import sys
 
 def similarList(list):
     return all(x == list[0] for x in list)
@@ -38,6 +39,8 @@ def Winner(player):
     BoolWin = True
     print(t)
     print(f"the winner is {player}")
+    if input("If you want to play the game again, press enter. If not, type exit to exit: ") == "":
+        sys.exit()
     while (BoolWin):
         BoolWin = True
 
@@ -61,6 +64,7 @@ def Inserter(player):
             i += 1                   
     print(t)
 
+
 n = int(input("enter the dim: "))
 t = np.full((n,n), "*")
 print(t)
@@ -72,3 +76,6 @@ for game_loop in range(n*n):
             Inserter("X")  
         else:    
             Inserter("O")
+
+if input("If you want to play the game again, press enter. If not, type exit to exit: ") == "":
+    sys.exit()
