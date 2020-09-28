@@ -5,6 +5,37 @@ Created on Mon Sep 28 14:52:40 2020
 @author: Likhit
 """
 import numpy as np
+
+def similarList(list):
+    return all(x == list[0] for x in list)
+
+def goalCheck(arr, player):
+    for l in range(n):
+        kk = []
+        if (t[l] == player).all() and ("*" not in kk):
+            #Horizontal check
+            print("hori")
+            return True
+        for m in range(n):
+            kk.append(arr[m, l])
+        if (similarList(kk) == True) and ("*" not in kk):
+            #vertical check
+            print("verti")
+            return True
+        else:
+            continue
+    dd1 = []
+    dd2 = []
+    for d in range(n):
+        dd1.append(arr[n-(d+1), d])
+        dd2.append(arr[d, d])
+    if ((similarList(dd1) == True) or (similarList(dd2) == True)) and ("*" not in dd1) and ("*" not in dd2):
+        #Diagonal check
+        print("diag")
+        return True
+    else:
+        pass
+
 n = int(input("enter the dim: "))
 t = np.full((n,n), "*")
 print(t)
@@ -25,6 +56,7 @@ for game_loop in range(n*n):
                         if (t[j, k] == "*"):
                             t[j, k] = "X"
                             Bool = False
+                            print(goalCheck(t, "X"))
                         else:
                             print("Position of the value is occupied, please enter right value")
                     i += 1
@@ -43,6 +75,7 @@ for game_loop in range(n*n):
                         if (t[j, k] == "*"):
                             t[j, k] = "O"
                             Bool = False
+                            print(goalCheck(t, "O"))
                         else:
                             print("Position of the value is occupied, please enter right value")
                     i += 1
