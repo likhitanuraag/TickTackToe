@@ -29,12 +29,23 @@ def goalCheck(arr, player):
     for d in range(n):
         dd1.append(arr[n-(d+1), d])
         dd2.append(arr[d, d])
-    if ((similarList(dd1) == True) or (similarList(dd2) == True)) and ("*" not in dd1) and ("*" not in dd2):
-        #Diagonal check
-        print("diag")
-        return True
-    else:
-        pass
+        print(dd2)
+    if (similarList(dd1) == True) or (similarList(dd2) == True):
+        if ("*" not in dd1) or ("*" not in dd2):
+            #Diagonal check
+            print("diag")
+            return True
+        else:
+            pass
+
+def Winner(player):
+    BoolWin = True
+    print(t)
+    print(f"the winner is {player}")
+    while (BoolWin):
+        BoolWin = True
+
+
 
 n = int(input("enter the dim: "))
 t = np.full((n,n), "*")
@@ -56,7 +67,8 @@ for game_loop in range(n*n):
                         if (t[j, k] == "*"):
                             t[j, k] = "X"
                             Bool = False
-                            print(goalCheck(t, "X"))
+                            if (goalCheck(t, "X")):
+                                Winner("X")
                         else:
                             print("Position of the value is occupied, please enter right value")
                     i += 1
@@ -75,7 +87,8 @@ for game_loop in range(n*n):
                         if (t[j, k] == "*"):
                             t[j, k] = "O"
                             Bool = False
-                            print(goalCheck(t, "O"))
+                            if (goalCheck(t, "O")):
+                                Winner("O")
                         else:
                             print("Position of the value is occupied, please enter right value")
                     i += 1
