@@ -1,7 +1,6 @@
 from os import system
 import sys
 global bool
-global boolWin
 
 class GameState:
     def __init__(self, dim, board):
@@ -24,8 +23,6 @@ class Player(GameState):
         GameState.__init__(self, dim, board)
         
     def Winner(self, player):
-        global boolWin
-        boolWin = False
         system('cls') 
         self.display_board(board)
         print(f"\n The winner is {player}")
