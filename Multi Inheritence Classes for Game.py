@@ -25,15 +25,17 @@ class Player(GameState):
     def Winner(self, player):
         system('cls') 
         self.display_board(board)
-        print(f"\n The winner is {player}")
+        print(f"\n \n The winner is {player}")
         if input("Press enter to exit: ") == "":
+            sys.exit()
+        else:
             sys.exit()
         
     def UpdateBoard(self, player):
         global Bool
         while True:
             try:
-                pos_val = int(input(f"Enter position for player {player}: "))
+                pos_val = int(input(f"\n \n Enter position for player {player}: "))
             except:
                 pass
             else:
@@ -113,7 +115,7 @@ if __name__ == "__main__":
     boolWin = True
     root = GameState(dim, board)
     root.gameLoop()
-    print("Its a Draw, No one wins")
+    print("\n \n Its a Draw, No one wins")
     if boolWin == True:
         if input("Press enter to exit: ") == "":
             sys.exit()
