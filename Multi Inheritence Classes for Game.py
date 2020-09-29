@@ -1,10 +1,12 @@
+from os import system
 import sys
 global bool
+global boolWin
 
 class GameState:
-    def __init__(self, n, t):
-        self.n = n
-        self.t = t       
+    def __init__(self, dim, board):
+        self.n = dim
+        self.t = board       
     
     def gameLoop(self):
         global Bool
@@ -19,16 +21,16 @@ class GameState:
 
 class Player(GameState):
     def __init__(self, **kargs):
-        GameState.__init__(self, n, t)
+        GameState.__init__(self, dim, board)
         
     def Winner(self, player):
-        BoolWin = True
-        self.display_board(t)
-        print(f"the winner is {player}")
-        if input("If you want to play the game again, press enter. If not, type exit to exit: ") == "":
+        global boolWin
+        boolWin = False
+        system('cls') 
+        self.display_board(board)
+        print(f"\n The winner is {player}")
+        if input("Press enter to exit: ") == "":
             sys.exit()
-        while (BoolWin):
-            BoolWin = True
         
     def UpdateBoard(self, player):
         global Bool
@@ -47,15 +49,16 @@ class Player(GameState):
                             self.Winner(player)
                     else:
                         print("Position of the value is occupied, please enter right value")
-                i += 1        
-        self.display_board(t)
+                i += 1  
+        system('cls')        
+        self.display_board(board)
         
     def display_board(self, board):
         [print(board[x], end='\n') for x in range(self.n)]  
 
 class Board(GameState):
     def __init__(self, **kargs):
-        GameState.__init__(self, n, t)
+        GameState.__init__(self, dim, board)
         
     def similarList(self, list):
         return all(x == list[0] for x in list)
@@ -82,7 +85,13 @@ class Board(GameState):
                 pass
 
 if __name__ == "__main__":
-    n = int(input("enter the dim: "))
-    t = [["*" for x in range(n)] for y in range(n)]
-    root = GameState(n, t)
+    global boolWin
+    dim = int(input("enter the dim: "))
+    board = [["*" for x in range(dim)] for y in range(dim)]
+    boolWin = True
+    root = GameState(dim, board)
     root.gameLoop()
+    print("Its a Draw, No one wins")
+    if boolWin == True:
+        if input("Press enter to exit: ") == "":
+            sys.exit()
