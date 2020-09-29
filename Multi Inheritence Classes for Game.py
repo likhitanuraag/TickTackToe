@@ -86,7 +86,14 @@ class Board(GameState):
 
 if __name__ == "__main__":
     global boolWin
-    dim = int(input("enter the dim: "))
+    Bool_ini = True
+    while (Bool_ini):
+        dim = int(input("enter the dim: "))
+        if ((dim) % 3) != 0:  
+            print("Please enter an appropriate dimension value. Only multiples of three are accepted.")
+        else:
+            Bool_ini = False
+            system('cls')
     board = [["*" for x in range(dim)] for y in range(dim)]
     boolWin = True
     root = GameState(dim, board)
