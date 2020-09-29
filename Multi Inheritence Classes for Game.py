@@ -65,21 +65,21 @@ class Board(GameState):
     
     def check_board(self, arr, player):
         for l in range(self.n):
-            kk = []
+            col = []
             if (self.similarList(arr[l]) == True) and ("*" not in arr[l]):
                 return True                 #Horizontal check
             for m in range(self.n):
-                kk.append(arr[m][l])
-            if (self.similarList(kk) == True) and ("*" not in kk):
+                col.append(arr[m][l])
+            if (self.similarList(col) == True) and ("*" not in col):
                 return True                #vertical check
             else:
                 continue
-        dd1, dd2 = [], []
+        diag1, diag2 = [], []
         for d in range(self.n):
-            dd1.append(arr[self.n-(d+1)][d])
-            dd2.append(arr[d][d])
-        if (self.similarList(dd1) == True) or (self.similarList(dd2) == True):
-            if ("*" not in dd1) or ("*" not in dd2):
+            diag1.append(arr[self.n-(d+1)][d])
+            diag2.append(arr[d][d])
+        if (self.similarList(diag1) == True) or (self.similarList(diag2) == True):
+            if ("*" not in diag1) or ("*" not in diag2):
                 return True                #Diagonal check
             else:
                 pass
@@ -88,9 +88,13 @@ if __name__ == "__main__":
     global boolWin
     Bool_ini = True
     while (Bool_ini):
-        dim = int(input("enter the dim: "))
+        try:
+            dim = int(input("enter the dimension: "))
+        except ValueError:
+            print("Please enter an appropriate dimension value, like 3 for 3x3 or 6 for 6x6. Only multiples of three are accepted.")
+            dim = int(input("enter the dimension: "))
         if ((dim) % 3) != 0:  
-            print("Please enter an appropriate dimension value. Only multiples of three are accepted.")
+            print("Please enter an appropriate dimension value, like 3 for 3x3 or 6 for 6x6. Only multiples of three are accepted.")
         else:
             Bool_ini = False
             system('cls')
