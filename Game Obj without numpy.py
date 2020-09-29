@@ -1,7 +1,5 @@
 import sys
-
 global Bool
-Bool = True
 
 class Game:
     def __init__(self, n, t):
@@ -15,24 +13,20 @@ class Game:
         for l in range(self.n):
             kk = []
             if (self.similarList(arr[l]) == True) and ("*" not in arr[l]):
-                #Horizontal check
-                return True
+                return True                 #Horizontal check
             for m in range(self.n):
                 kk.append(arr[m][l])
             if (self.similarList(kk) == True) and ("*" not in kk):
-                #vertical check
-                return True
+                return True                #vertical check
             else:
                 continue
-        dd1 = []
-        dd2 = []
+        dd1, dd2 = [], []
         for d in range(self.n):
             dd1.append(arr[self.n-(d+1)][d])
             dd2.append(arr[d][d])
         if (self.similarList(dd1) == True) or (self.similarList(dd2) == True):
             if ("*" not in dd1) or ("*" not in dd2):
-                #Diagonal check
-                return True
+                return True                #Diagonal check
             else:
                 pass
     
@@ -65,15 +59,12 @@ class Game:
                             self.Winner(player)
                     else:
                         print("Position of the value is occupied, please enter right value")
-                i += 1  
-                 
+                i += 1        
         self.display_board(t)
     
     def gameLoop(self):
         global Bool
-        
         self.display_board(t)
-                
         for game_loop in range(self.n*self.n):
             Bool = True
             while (Bool):
@@ -82,8 +73,7 @@ class Game:
                     self.Inserter("X")  
                 else:    
                     self.Inserter("O")
-    
-    
+        
 if __name__ == "__main__":
     n = int(input("enter the dim: "))
     t = [["*" for x in range(n)] for y in range(n)]
