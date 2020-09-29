@@ -37,9 +37,7 @@ class Game:
                 pass
     
     def display_board(self, board):
-        for yy in range(self.n):
-            print(board[yy])
-            print("", end='')
+        [print(board[x], end='\n') for x in range(self.n)]
     
     def Winner(self, player):
         BoolWin = True
