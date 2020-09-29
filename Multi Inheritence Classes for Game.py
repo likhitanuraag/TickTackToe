@@ -12,14 +12,13 @@ class GameState:
         for game_loop in range(self.n*self.n):
             Bool = True
             while (Bool):
-                print(game_loop)
                 if ((game_loop+1) % 2) != 0:  
                     Player().UpdateBoard("X")  
                 else:    
                     Player().UpdateBoard("O")
 
 class Player(GameState):
-    def __init__(self, **kv):
+    def __init__(self, **kargs):
         GameState.__init__(self, n, t)
         
     def Winner(self, player):
@@ -55,7 +54,7 @@ class Player(GameState):
         [print(board[x], end='\n') for x in range(self.n)]  
 
 class Board(GameState):
-    def __init__(self, **kv):
+    def __init__(self, **kargs):
         GameState.__init__(self, n, t)
         
     def similarList(self, list):
