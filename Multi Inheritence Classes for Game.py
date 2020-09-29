@@ -34,10 +34,14 @@ class Player(GameState):
         
     def UpdateBoard(self, player):
         global Bool
-        try:
-            pos_val = int(input(f"Enter position for player {player}: "))
-        except ValueError:
-            print("please enter a valid number")    
+        while True:
+            try:
+                pos_val = int(input(f"Enter position for player {player}: "))
+            except:
+                pass
+            else:
+                break
+            print("Wrong value entered, try again")
         i = 1
         for j in range(self.n):
             for k in range(self.n):
@@ -67,11 +71,11 @@ class Board(GameState):
         for l in range(self.n):
             col = []
             if (self.similarList(arr[l]) == True) and ("*" not in arr[l]):
-                return True                 #Horizontal check
+                return True                 #Horizontal row check
             for m in range(self.n):
                 col.append(arr[m][l])
             if (self.similarList(col) == True) and ("*" not in col):
-                return True                #vertical check
+                return True                #vertical column check
             else:
                 continue
         diag1, diag2 = [], []
@@ -85,19 +89,29 @@ class Board(GameState):
                 pass
 
 if __name__ == "__main__":
+    if input("Press enter to begin the game or type exit to exit the game :") != "":
+        sys.exit()
     global boolWin
-    Bool_ini = True
-    while (Bool_ini):
+    bool_ent = True
+    while bool_ent:    
+        while True:
+            try:
+                dim = int(input("enter the dimension: ")) 
+            except:
+                pass
+            else:
+                break
+            print("Wrong value entered, try again")
         try:
-            dim = int(input("enter the dimension: "))
-        except ValueError:
-            print("Please enter an appropriate dimension value, like 3 for 3x3 or 6 for 6x6. Only multiples of three are accepted.")
-            dim = int(input("enter the dimension: "))
-        if ((dim) % 3) != 0:  
-            print("Please enter an appropriate dimension value, like 3 for 3x3 or 6 for 6x6. Only multiples of three are accepted.")
+            if ((dim) % 3) != 0:
+                print("Please enter an appropriate dimension value, like 3 for 3x3 or 6 for 6x6. Only multiples of three are accepted.")
+            else:
+                system('cls')
+                break
+        except:
+            pass
         else:
-            Bool_ini = False
-            system('cls')
+            bool_ent = True
     board = [["*" for x in range(dim)] for y in range(dim)]
     boolWin = True
     root = GameState(dim, board)
